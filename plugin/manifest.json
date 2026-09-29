@@ -1,0 +1,76 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+  "UUID": "com.kirkanos.grafana",
+  "Name": "Grafana Panel",
+  "Version": "0.0.0.0",
+  "Author": "Andreas Hacker",
+  "Description": "Any Grafana panel rendered on a Stream Deck key or touch strip. Unofficial plugin, not affiliated with Grafana Labs.",
+  "URL": "https://github.com/kirkanos/Streamdeck-Grafana",
+  "Icon": "images/icon",
+  "Category": "Grafana Panel",
+  "CategoryIcon": "images/category",
+  "CodePath": "bin/plugin.js",
+  "SDKVersion": 3,
+  "Nodejs": {
+    "Version": "24",
+    "Debug": "enabled"
+  },
+  "Software": {
+    "MinimumVersion": "7.1"
+  },
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "12"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Actions": [
+    {
+      "UUID": "com.kirkanos.grafana.panel",
+      "Name": "Panel",
+      "Icon": "images/actions/panel",
+      "Tooltip": "One Grafana panel as an image, refreshed on an interval; press to open the dashboard, hold to refresh",
+      "PropertyInspectorPath": "ui/panel.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "images/key",
+          "TitleAlignment": "top",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.kirkanos.grafana.dial-panel",
+      "Name": "Dial Panel",
+      "Icon": "images/actions/dial",
+      "Tooltip": "One Grafana panel on the touch strip; turn the dial to switch the time range, push to refresh",
+      "PropertyInspectorPath": "ui/dial-panel.html",
+      "Controllers": [
+        "Encoder"
+      ],
+      "Encoder": {
+        "layout": "layouts/dial.json",
+        "Icon": "images/actions/dial",
+        "TriggerDescription": {
+          "Rotate": "Time range (1h, 6h, 24h, 7d)",
+          "Push": "Refresh the panel",
+          "Touch": "Open the dashboard"
+        }
+      },
+      "SupportedInMultiActions": false,
+      "States": [
+        {
+          "Image": "images/key"
+        }
+      ]
+    }
+  ]
+}

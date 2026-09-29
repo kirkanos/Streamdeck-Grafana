@@ -1,6 +1,6 @@
 # Streamdeck-Grafana
 
-Stream Deck plugin `com.kirkanos.grafana`. Status: plan only, no code yet.
+Stream Deck plugin `com.kirkanos.grafana`. Status: M1 to M3 implemented (see README.md); M0 and M4 open.
 
 ## Goal
 
