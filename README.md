@@ -23,6 +23,8 @@ Download the [latest release](https://github.com/kirkanos/Streamdeck-Grafana/rel
 
 ## Settings
 
+The rendered picture already carries the panel title, so the key shows no Stream Deck title by default. If you type one, untick *Show title* in the key's title settings or leave the title empty, otherwise it covers the panel name.
+
 The connection is shared by all keys and dials and set up once in the settings of any key:
 
 1. In Grafana, create a service account with the **Viewer** role (Administration → Users and access → Service accounts) and add a token to it.

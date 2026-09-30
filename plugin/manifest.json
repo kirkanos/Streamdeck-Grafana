@@ -43,7 +43,8 @@
         {
           "Image": "images/key",
           "TitleAlignment": "top",
-          "FontSize": 10
+          "FontSize": 10,
+          "ShowTitle": false
         }
       ]
     },
