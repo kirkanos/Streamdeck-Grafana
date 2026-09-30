@@ -1,6 +1,6 @@
 {
   "name": "streamdeck-grafana",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "Grafana Panel: Any Grafana panel rendered on a Stream Deck key or touch strip.",
