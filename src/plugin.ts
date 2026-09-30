@@ -26,7 +26,27 @@ grafana.on("settings", () => {
 grafana.on("state", () => {
   streamDeck.logger.info(`grafana connection: ${grafana.state}${grafana.error ? ` (${grafana.error})` : ""}`);
   sendToPropertyInspector(statusMessage());
+  if (grafana.state === "connected") {
+    // An open settings page asked for its lists before the connection existed
+    // (and got nothing); its hot-reloading selects pick these up now.
+    void pushLists();
+  }
 });
+
+/** Sends the dashboard list and, for the open key, its panel list to the property inspector. */
+async function pushLists(): Promise<void> {
+  const action = streamDeck.ui.action;
+  if (!action) {
+    return;
+  }
+  try {
+    sendToPropertyInspector({ event: "getDashboards", items: dashboardItems(await grafana.dashboards()) });
+  } catch (err) {
+    streamDeck.logger.warn(`dashboards: ${(err as Error).message}`);
+  }
+  const settings = await action.getSettings<PanelSettings>();
+  await sendPanelItems(settings.dashboardUid);
+}
 
 // Messages from the property inspectors (ui/*.html).
 
