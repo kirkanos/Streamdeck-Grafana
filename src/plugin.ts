@@ -44,8 +44,8 @@ async function pushLists(): Promise<void> {
   } catch (err) {
     streamDeck.logger.warn(`dashboards: ${(err as Error).message}`);
   }
-  const settings = await action.getSettings<PanelSettings>();
-  await sendPanelItems(settings.dashboardUid);
+  const settings = (await action.getSettings()) as PanelSettings;
+  await sendPanelItems(typeof settings.dashboardUid === "string" ? settings.dashboardUid : undefined);
 }
 
 // Messages from the property inspectors (ui/*.html).
