@@ -12,7 +12,12 @@ import {
 import { PLUGIN_ID } from "../config";
 import { failureText, nextTimeRange } from "../grafana/model";
 import { grafana } from "../grafana/service";
-import { DIAL_HEIGHT, DIAL_WIDTH, dialError, dialMessage } from "../render/dial";
+import { dialError, dialMessage } from "../render/dial";
+
+// The touch strip is 200x100, but Grafana's d-solo page never becomes ready below
+// 144 px height. 288x144 keeps the 2:1 ratio; Stream Deck scales it onto the strip.
+const RENDER_WIDTH = 288;
+const RENDER_HEIGHT = 144;
 import { pngImage } from "../render/keys";
 import { updates } from "../throttle";
 import { type PanelSettings, panelIdOf, refreshIntervalMs, themeOf, timeRangeOf, unavailableReason } from "./settings";
@@ -104,8 +109,8 @@ export class DialPanelAction extends SingletonAction<PanelSettings> {
       uid,
       slug: await grafana.slugFor(uid),
       panelId: panelIdOf(settings)!,
-      width: DIAL_WIDTH,
-      height: DIAL_HEIGHT,
+      width: RENDER_WIDTH,
+      height: RENDER_HEIGHT,
       range: timeRangeOf(settings),
       theme: themeOf(settings),
       tz: TIME_ZONE,
